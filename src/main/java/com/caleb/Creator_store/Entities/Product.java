@@ -38,6 +38,7 @@ public class Product {
     @NotBlank (message = "Product name is required")
     @Column (nullable = false)
     private String name;
+    
     @Column
     private String description;
 
