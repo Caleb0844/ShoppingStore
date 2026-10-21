@@ -2,11 +2,14 @@ package com.caleb.Creator_store.Entities;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
@@ -27,7 +30,8 @@ import lombok.Setter;
 @Builder 
 
 public class Order {
-
+    
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -43,10 +47,17 @@ public class Order {
     @Column (nullable = false)
     private String status;
 
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> orderItems;
+    
+
+
     @NotNull (message = "Total amount must be valid")
     @DecimalMin(value = "0.0", inclusive = false, message = "total amount must be greater than zero")
     @Column (nullable = false)
     private BigDecimal total_amount;
+
+
 
     @Column (name = "created_at")
     private LocalDateTime createdAt;
@@ -62,5 +73,4 @@ public class Order {
     }
 
 }
-
 
