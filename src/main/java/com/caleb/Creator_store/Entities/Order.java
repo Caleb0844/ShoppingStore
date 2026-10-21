@@ -10,6 +10,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.DecimalMin;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -41,6 +43,8 @@ public class Order {
     @Column (nullable = false)
     private String status;
 
+    @NotNull (message = "Total amount must be valid")
+    @DecimalMin(value = "0.0", inclusive = false, message = "total amount must be greater than zero")
     @Column (nullable = false)
     private BigDecimal total_amount;
 
@@ -49,8 +53,14 @@ public class Order {
 
     @PrePersist 
     public void prePersist(){
-        this.createdAt = LocalDateTime.now();
+        if(createdAt == null){
+            createdAt = LocalDateTime.now();
+        }
+        if(status == null || status.isBlank()){
+            status = "PENDING";
+        }
     }
+
 }
 
 
