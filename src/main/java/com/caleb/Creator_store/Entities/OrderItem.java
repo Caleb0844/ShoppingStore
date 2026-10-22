@@ -2,6 +2,8 @@ package com.caleb.Creator_store.Entities;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -22,7 +24,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor 
 @AllArgsConstructor 
-@Builder 
+@Builder
  
 public class OrderItem {
     @Id 
@@ -30,13 +32,15 @@ public class OrderItem {
     private Long id;
     
     @Column(nullable = false)
-    private Integer Quantity;
+    private Integer quantity;
 
 
     @Column(name = "price_at_purchase",nullable = false)
     private BigDecimal priceAtPurchase;
 
 
+
+    @JsonBackReference 
     @ManyToOne 
     @JoinColumn (name = "order_id", nullable = false)
     private Order order;
