@@ -4,6 +4,7 @@ package com.caleb.Creator_store.Controllers;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,14 +31,14 @@ public Order createOrder(@Valid @RequestBody OrderRequest orderRequest) {
 
 
 
-    
+    @GetMapping 
     public List<Order> getAllOrders() {
-    return null;
+    return orderService.getAllOrders();
     }
 
-    
-    public Order getOrderById(Long id) {
-    return null;
+    @GetMapping("/{id}")
+    public Order getOrderById(@PathVariable Long id) {
+    return orderService.getOrderById(id);
 }
 }
 

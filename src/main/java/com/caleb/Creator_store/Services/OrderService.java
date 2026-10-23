@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.caleb.Creator_store.Entities.Order;
 import com.caleb.Creator_store.Entities.OrderItem;
@@ -71,8 +72,17 @@ public class OrderService {
         return orderRepo.save(order);
     }
 
-    
+    @GetMapping 
+    public List<Order> getAllOrders() {
+    return orderRepo.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Order getOrderById(Long id) {
+    return orderRepo.findById(id)
+        .orElseThrow(() -> new RuntimeException("Order with this id not found"));
 
 
 
+}
 }
