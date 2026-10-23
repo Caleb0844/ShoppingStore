@@ -31,14 +31,15 @@ public class UserService {
 
         return userRepo.save(existingUser);
     }
-    public User deletUser(Long id, User user){
-        return null;
+    public void  deletUser(Long id, User user){
+        userRepo.deleteById(id);
     }
     public List <User> getUsers(){
-        return null;
+        return userRepo.findAll();
     }
     public User getUserById(Long id,User user){
-        return null; 
+        return userRepo.findById(id)
+        .orElseThrow(() ->new RuntimeException("Product not found with id: "+id)) ; 
     }
     
 

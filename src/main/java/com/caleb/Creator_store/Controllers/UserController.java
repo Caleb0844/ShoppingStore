@@ -33,8 +33,8 @@ public class UserController {
         return userService.updateUser(id, user);
     }
     @DeleteMapping ("/{id}")
-    public User deletUser(@PathVariable Long id, User user){
-        return userService.deletUser(id, user);
+    public void  deletUser(@PathVariable Long id, User user){
+        userService.deletUser(id, user);
     }
     @GetMapping 
     public List <User> getUsers(User user){
