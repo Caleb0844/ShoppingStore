@@ -1,0 +1,26 @@
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Java and build output
+target/
+build/
+.mvn/wrapper/maven-wrapper.jar
+
+# Java/IDE metadata
+.classpath
+.project
+.settings/
+.idea/
+*.iml
+.vscode/
+
+# JavaScript dependencies and generated output
+node_modules/
+.expo/
+dist/
+
+# Local archives and logs
+*.log
+*.zip
