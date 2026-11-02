@@ -1,4 +1,4 @@
-package com.caleb.SecEx;
+package com.caleb.SecEx.oders;
 
 
 public class Student {
