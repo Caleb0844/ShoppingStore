@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.caleb.SecEx.Repository.UserRepo;
-import com.caleb.SecEx.model.User;
+import com.caleb.SecEx.model.Users;
 import com.caleb.SecEx.model.UserPrincipal;
 
 @Service 
@@ -18,7 +18,7 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = repo.findByUsername(username);
+        Users user = repo.findByUsername(username);
 
         if(user == null){
             System.out.println("User Not Found");

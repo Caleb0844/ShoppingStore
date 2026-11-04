@@ -9,9 +9,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class UserPrincipal implements UserDetails {
 
-    private final User user;
+    private final Users user;
 
-    public UserPrincipal(User user) {
+    public UserPrincipal(Users user) {
         this.user = user;
     }
 
@@ -51,3 +51,8 @@ public class UserPrincipal implements UserDetails {
     }
 
 }
+
+//plain password -> cipher text  xx,, use hashing
+
+//use  bcrypt
+ 

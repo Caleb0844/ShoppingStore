@@ -4,10 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-@Entity 
+@Entity
 @Table(name = "user")
-public class User {
-    @Id 
+public class Users {
+    @Id
     private int id;
     private String username;
     private String password;
@@ -35,5 +35,4 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
 }
