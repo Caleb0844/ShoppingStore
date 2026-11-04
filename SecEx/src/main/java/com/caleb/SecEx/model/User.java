@@ -2,9 +2,11 @@ package com.caleb.SecEx.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity 
-public class Users {
+@Table(name = "user")
+public class User {
     @Id 
     private int id;
     private String username;

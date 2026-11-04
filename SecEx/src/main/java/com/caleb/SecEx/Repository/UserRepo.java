@@ -3,10 +3,10 @@ package com.caleb.SecEx.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.caleb.SecEx.model.Users;
+import com.caleb.SecEx.model.User;
 
 @Repository
-public interface UserRepo extends JpaRepository<Users, Integer> {
+public interface UserRepo extends JpaRepository<User, Integer> {
 
-    Users findByUsername(String username);
+    User findByUsername(String username);
 }
