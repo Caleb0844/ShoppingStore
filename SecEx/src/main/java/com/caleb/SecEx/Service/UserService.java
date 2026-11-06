@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.caleb.SecEx.Repository.UserRepo;
 import com.caleb.SecEx.model.Users;
 
-import io.jsonwebtoken.JwtBuilder;
 
 @Service 
 public class UserService {

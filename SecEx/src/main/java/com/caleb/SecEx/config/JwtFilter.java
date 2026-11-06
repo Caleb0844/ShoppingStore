@@ -2,23 +2,24 @@ package com.caleb.SecEx.config;
 
 import java.io.IOException;
 
-import org.apache.catalina.core.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authorization.method.AuthorizeReturnObject;
+import org.springframework.context.ApplicationContext;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.stereotype.Component;
 
 import com.caleb.SecEx.Service.JWTService;
+import com.caleb.SecEx.Service.MyUserDetailsService;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- * JwtFilter
- */
+@Component
 public class JwtFilter extends  OncePerRequestFilter{
 
     @Autowired 
@@ -42,12 +43,16 @@ public class JwtFilter extends  OncePerRequestFilter{
 
             if(username !=null && SecurityContextHolder.getContext().getAuthentication() == null){
 
-                UserDetails userDetails = context.getBean(UserDetails.class);
+                UserDetails userDetails = context.getBean(MyUserDetailsService.class).loadUserByUsername(username);
 
                 if(jwtService.validateToken(token, userDetails)){
-
+                    UsernamePasswordAuthenticationToken authToken = 
+                    new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    SecurityContextHolder.getContext().setAuthentication(authToken);
                 }
             }
+            filterChain.doFilter(request, response);
     }
 
 
